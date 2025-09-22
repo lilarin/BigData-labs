@@ -1,0 +1,4 @@
+hub spoke1 spoke2 spoke3
+spoke1 hub
+spoke2 hub
+spoke3 hub
