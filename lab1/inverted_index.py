@@ -22,7 +22,7 @@ if __name__ == "__main__":
     sc = SparkContext("local", "InvertedIndexApp")
     sc.setLogLevel("ERROR")
 
-    input_files = sc.wholeTextFiles("*.txt")
+    input_files = sc.wholeTextFiles("lab1/*.txt")
 
     mapped_index = input_files.flatMap(inverted_index_mapper_with_offset)
 

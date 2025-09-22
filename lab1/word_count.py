@@ -22,7 +22,7 @@ if __name__ == "__main__":
     sc = SparkContext("local", "WordCountApp")
     sc.setLogLevel("ERROR")
 
-    input_files = sc.textFile("*.txt")
+    input_files = sc.textFile("lab1/*.txt")
 
     mapped_words = input_files.flatMap(word_count_mapper)
 
