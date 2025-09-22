@@ -1,5 +1,5 @@
 A B
 B A C
 C D
-D
-E E
+D C
+E D
