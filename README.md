@@ -22,13 +22,20 @@ docker rm -f pyspark-dev
 docker exec -it pyspark-dev bash
 ```
 
-### Inverted index
+### Launch scripts
 
 ```bash
-spark-submit inverted_index.py
+spark-submit lab1/inverted_index.py
 ```
 
 ```bash
-spark-submit word_count.py
+spark-submit lab/1word_count.py
 ```
 
+# Мешканці мого потоку!
+
+Мій код – #####
+
+Воно вам не треба...
+
+![Смішна картинка](https://i.imgflip.com/64slsz.png?a475992)
