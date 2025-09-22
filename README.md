@@ -29,7 +29,11 @@ spark-submit lab1/inverted_index.py
 ```
 
 ```bash
-spark-submit lab/1word_count.py
+spark-submit lab1/word_count.py
+```
+
+```bash
+spark-submit lab2/pagerank.py lab2/graph.txt 10 0.85
 ```
 
 # Мешканці мого потоку!
