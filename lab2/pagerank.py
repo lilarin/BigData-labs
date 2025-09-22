@@ -5,19 +5,31 @@ from operator import add
 from pyspark import SparkContext
 
 
-def parse_line(line):
+def parse_graph_line(line):
     parts = re.split(r'\s+', line.strip())
+
     if len(parts) > 0 and parts[0]:
-        return parts[0], parts[1:]
+        source_page = parts[0]
+        linked_pages = parts[1:]
+        return source_page, linked_pages
+
     return None, None
 
 
-def compute_contribs(urls, rank):
-    num_urls = len(urls)
-    if num_urls == 0:
+def calculate_contributions(page_links_rank_tuple):
+    page_id, (page_links, page_rank) = page_links_rank_tuple
+
+    num_links = len(page_links)
+
+    if num_links == 0:
         return []
 
-    return [(url, rank / num_urls) for url in urls]
+    contributions = []
+    for page_link in page_links:
+        contribution = (page_link, page_rank / num_links)
+        contributions.append(contribution)
+
+    return contributions
 
 
 if __name__ == "__main__":
@@ -47,7 +59,7 @@ if __name__ == "__main__":
 
     lines = sc.textFile(input_file)
 
-    links = lines.map(parse_line).filter(lambda x: x[0] is not None).cache()
+    links = lines.map(parse_graph_line).filter(lambda x: x[0] is not None).cache()
 
     num_pages = links.count()
 
@@ -64,18 +76,17 @@ if __name__ == "__main__":
 
     ranks = links.map(lambda url_neighbors: (url_neighbors[0], 1.0 / num_pages))
 
-    for iteration in range(iterations):
-        contribs = links.join(ranks).flatMap(
-            lambda url_urls_rank: compute_contribs(url_urls_rank[1][0], url_urls_rank[1][1])
-        )
+    for i in range(iterations):
+        contribs = links.join(ranks).flatMap(calculate_contributions)
 
         summed_contribs = contribs.reduceByKey(add)
 
         ranks = links.mapValues(lambda _: 0.0).leftOuterJoin(summed_contribs).mapValues(
-            lambda x: (1 - damping_factor) / num_pages + damping_factor * (x[1] or 0.0)
+            lambda contrib: (1 - damping_factor) / num_pages + damping_factor * (contrib[1] or 0.0)
         )
 
     results = ranks.collect()
+
     results.sort(key=lambda x: x[1], reverse=True)
 
     print("========================================")
