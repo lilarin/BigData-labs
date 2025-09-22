@@ -1,17 +1,21 @@
 import os
+import re
 
 from pyspark import SparkContext
 
 
-def inverted_index_mapper(file_content_pair):
+def inverted_index_mapper_with_offset(file_content_pair):
     filepath, content = file_content_pair
     filename = os.path.basename(filepath)
-    content_words = content.split()
-    return [(content_word, filename) for content_word in content_words]
+
+    return [
+        (match.group(0), f"{filename}@{match.start()}")
+        for match in re.finditer(r'\S+', content)
+    ]
 
 
-def inverted_index_reducer(filenames_iterator):
-    return sorted(list(set(filenames_iterator)))
+def inverted_index_reducer(locations_iterator):
+    return sorted(list(set(locations_iterator)))
 
 
 if __name__ == "__main__":
@@ -20,7 +24,7 @@ if __name__ == "__main__":
 
     input_files = sc.wholeTextFiles("*.txt")
 
-    mapped_index = input_files.flatMap(inverted_index_mapper)
+    mapped_index = input_files.flatMap(inverted_index_mapper_with_offset)
 
     grouped_by_word = mapped_index.groupByKey()
 
@@ -32,8 +36,8 @@ if __name__ == "__main__":
     print("========================================")
     print("         Inverted Index Results         ")
     print("========================================")
-    for word, files in results:
-        print(f"{word}: {files}")
+    for word, locations in results:
+        print(f"{word}: {locations}")
     print("========================================")
 
     sc.stop()
