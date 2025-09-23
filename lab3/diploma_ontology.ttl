@@ -1,0 +1,351 @@
+@prefix : <http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2/> .
+
+<http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#використовуєТехнологію
+:використовуєТехнологію rdf:type owl:ObjectProperty ;
+                        rdfs:domain [ rdf:type owl:Restriction ;
+                                      owl:onProperty :використовуєТехнологію ;
+                                      owl:someValuesFrom :ПрограмнийПродукт
+                                    ] ;
+                        rdfs:range [ rdf:type owl:Restriction ;
+                                     owl:onProperty :використовуєТехнологію ;
+                                     owl:someValuesFrom :Технологія
+                                   ] .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#записуєтьсяВЧергу
+:записуєтьсяВЧергу rdf:type owl:ObjectProperty ;
+                   rdfs:domain [ rdf:type owl:Restriction ;
+                                 owl:onProperty :записуєтьсяВЧергу ;
+                                 owl:someValuesFrom :Студент
+                               ] ;
+                   rdfs:range [ rdf:type owl:Restriction ;
+                                owl:onProperty :записуєтьсяВЧергу ;
+                                owl:someValuesFrom :ЧергаНаЗахист
+                              ] .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#керує
+:керує rdf:type owl:ObjectProperty ;
+       rdfs:domain [ rdf:type owl:Restriction ;
+                     owl:onProperty :керує ;
+                     owl:someValuesFrom :ПрограмнийПродукт
+                   ] ;
+       rdfs:range [ rdf:type owl:Restriction ;
+                    owl:onProperty :керує ;
+                    owl:someValuesFrom :DiscordСервер
+                  ] .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#маєКанал
+:маєКанал rdf:type owl:ObjectProperty ;
+          rdfs:domain [ rdf:type owl:Restriction ;
+                        owl:onProperty :маєКанал ;
+                        owl:someValuesFrom :Категорія
+                      ] ;
+          rdfs:range [ rdf:type owl:Restriction ;
+                       owl:onProperty :маєКанал ;
+                       owl:someValuesFrom :Канал
+                     ] .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#маєРоль
+:маєРоль rdf:type owl:ObjectProperty ;
+         rdfs:domain [ rdf:type owl:Restriction ;
+                       owl:onProperty :маєРоль ;
+                       owl:someValuesFrom :Користувач
+                     ] ;
+         rdfs:range [ rdf:type owl:Restriction ;
+                      owl:onProperty :маєРоль ;
+                      owl:someValuesFrom :Роль
+                    ] .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#маєУчасника
+:маєУчасника rdf:type owl:ObjectProperty ;
+             rdfs:domain [ rdf:type owl:Restriction ;
+                           owl:onProperty :маєУчасника ;
+                           owl:someValuesFrom :DiscordСервер
+                         ] ;
+             rdfs:range [ rdf:type owl:Restriction ;
+                          owl:onProperty :маєУчасника ;
+                          owl:someValuesFrom :Користувач
+                        ] .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#надаєФункціонал
+:надаєФункціонал rdf:type owl:ObjectProperty ;
+                 rdfs:domain [ rdf:type owl:Restriction ;
+                               owl:onProperty :надаєФункціонал ;
+                               owl:someValuesFrom :ПрограмнийПродукт
+                             ] ;
+                 rdfs:range [ rdf:type owl:Restriction ;
+                              owl:onProperty :надаєФункціонал ;
+                              owl:someValuesFrom :Функціонал
+                            ] .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#створюєЧергу
+:створюєЧергу rdf:type owl:ObjectProperty ;
+              rdfs:domain [ rdf:type owl:Restriction ;
+                            owl:onProperty :створюєЧергу ;
+                            owl:someValuesFrom :Викладач
+                          ] ;
+              rdfs:range [ rdf:type owl:Restriction ;
+                           owl:onProperty :створюєЧергу ;
+                           owl:someValuesFrom :ЧергаНаЗахист
+                         ] .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#ПІБ
+:ПІБ rdf:type owl:DatatypeProperty ;
+     rdfs:domain :Користувач ;
+     rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#датаЗахисту
+:датаЗахисту rdf:type owl:DatatypeProperty ;
+             rdfs:domain :ЧергаНаЗахист ;
+             rdfs:range xsd:dateTimeStamp .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#датаСтворення
+:датаСтворення rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Канал ,
+                           :Категорія ,
+                           :Роль ,
+                           :ЧергаНаЗахист ;
+               rdfs:range xsd:dateTimeStamp .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#навчальнаГрупа
+:навчальнаГрупа rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Студент ;
+                rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#назва
+:назва rdf:type owl:DatatypeProperty ;
+       rdfs:domain :Backend_Технологія ,
+                   :Frontend_Технологія ,
+                   :База_Даних ,
+                   :Сервіс_Автентифікації ;
+       rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Backend_Технологія
+:Backend_Технологія rdf:type owl:Class ;
+                    rdfs:subClassOf :Технологія .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Discord-бот
+:Discord-бот rdf:type owl:Class ;
+             rdfs:subClassOf :ПрограмнийПродукт .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#DiscordСервер
+:DiscordСервер rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Frontend_Технологія
+:Frontend_Технологія rdf:type owl:Class ;
+                     rdfs:subClassOf :Технологія .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Адміністратор
+:Адміністратор rdf:type owl:Class ;
+               rdfs:subClassOf :Користувач .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#База_Даних
+:База_Даних rdf:type owl:Class ;
+            rdfs:subClassOf :Технологія .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Бекенд-сервіс
+:Бекенд-сервіс rdf:type owl:Class ;
+               rdfs:subClassOf :ПрограмнийПродукт .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Веб-панель
+:Веб-панель rdf:type owl:Class ;
+            rdfs:subClassOf :ПрограмнийПродукт .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Викладач
+:Викладач rdf:type owl:Class ;
+          rdfs:subClassOf :Користувач .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#ЕлементСервера
+:ЕлементСервера rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Канал
+:Канал rdf:type owl:Class ;
+       rdfs:subClassOf :ЕлементСервера .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Категорія
+:Категорія rdf:type owl:Class ;
+           rdfs:subClassOf :ЕлементСервера .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Користувач
+:Користувач rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#ПрограмнийПродукт
+:ПрограмнийПродукт rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Роль
+:Роль rdf:type owl:Class ;
+      rdfs:subClassOf :ЕлементСервера .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Сервіс_Автентифікації
+:Сервіс_Автентифікації rdf:type owl:Class ;
+                       rdfs:subClassOf :Технологія .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Студент
+:Студент rdf:type owl:Class ;
+         rdfs:subClassOf :Користувач .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Технологія
+:Технологія rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Функціонал
+:Функціонал rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#ЧергаНаЗахист
+:ЧергаНаЗахист rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Asyncio
+:Asyncio rdf:type owl:NamedIndividual ,
+                  :Backend_Технологія .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Disnake
+:Disnake rdf:type owl:NamedIndividual ,
+                  :Backend_Технологія .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Docker
+:Docker rdf:type owl:NamedIndividual ,
+                 :Backend_Технологія .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#FastAPI
+:FastAPI rdf:type owl:NamedIndividual ,
+                  :Backend_Технологія .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#PostgreSQL
+:PostgreSQL rdf:type owl:NamedIndividual ,
+                     :База_Даних .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#ReactJS
+:ReactJS rdf:type owl:NamedIndividual ,
+                  :Frontend_Технологія .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Supabase
+:Supabase rdf:type owl:NamedIndividual ,
+                   :Сервіс_Автентифікації .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Автоматична_реєстрація_студентів
+:Автоматична_реєстрація_студентів rdf:type owl:NamedIndividual ,
+                                           :Функціонал .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Керування_сервером
+:Керування_сервером rdf:type owl:NamedIndividual ,
+                             :Функціонал .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Кракович_Павло_Дмитрович
+:Кракович_Павло_Дмитрович rdf:type owl:NamedIndividual ,
+                                   :Студент ;
+                          :маєРоль :Роль_Студента ;
+                          :ПІБ "Кракович Павло Дмитрович" ;
+                          :навчальнаГрупа "КН51-мп" .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#ЛР1_BigData
+:ЛР1_BigData rdf:type owl:NamedIndividual ,
+                      :ЧергаНаЗахист .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Організація_черг
+:Організація_черг rdf:type owl:NamedIndividual ,
+                           :Функціонал .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Панель_керування_сервером_кафедри
+:Панель_керування_сервером_кафедри rdf:type owl:NamedIndividual ,
+                                            :Веб-панель ;
+                                   :використовуєТехнологію :Asyncio ,
+                                                           :Docker ,
+                                                           :FastAPI ,
+                                                           :ReactJS .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Роль_Адміністратора
+:Роль_Адміністратора rdf:type owl:NamedIndividual ,
+                              :Роль ;
+                     :назва "Адміністратор" .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Роль_Викладача
+:Роль_Викладача rdf:type owl:NamedIndividual ,
+                         :Роль ;
+                :назва "Викладач" .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Роль_Навчальної_Групи
+:Роль_Навчальної_Групи rdf:type owl:NamedIndividual ,
+                                :Роль ;
+                       :назва "КН51-мп" .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/8/untitled-ontology-2#Роль_Студента
+:Роль_Студента rdf:type owl:NamedIndividual ,
+                        :Роль ;
+               :використовуєТехнологію :Asyncio ,
+                                       :Disnake ,
+                                       :ReactJS ;
+               :назва "Студент" .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
