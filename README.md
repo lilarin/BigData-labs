@@ -70,12 +70,20 @@ python lab4/async-producer-consumer.py
 docker-compose down
 ```
 
-## Lab 5
+## Lab 5-7
 
 ### Launch tests
 
 ```bash
 python -m unittest discover lab5/ -v
+```
+
+```bash
+python -m unittest discover lab6/ -v
+```
+
+```bash
+python -m unittest discover lab7/ -v
 ```
 
 # Мешканці мого потоку!
