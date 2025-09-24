@@ -70,6 +70,14 @@ python lab4/async-producer-consumer.py
 docker-compose down
 ```
 
+## Lab 5
+
+### Launch tests
+
+```bash
+python -m unittest discover lab5/ -v
+```
+
 # Мешканці мого потоку!
 
 Мій код – #####
